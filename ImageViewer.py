@@ -23,9 +23,9 @@ class ImageViewer(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    image_1 = ImageViewer(100, 100, 800, 640,
+    image_1 = ImageViewer(50, 100, 800, 640,
                           '08_06_2021_16_59_00/Entwicklung_Infektionszahlen.png')
-    image_2 = ImageViewer(1000, 100, 800, 640,
+    image_2 = ImageViewer(900, 100, 800, 640,
                           '08_06_2021_16_59_00/Entwicklung_Inzidenzwerte.png')
     image_1.show()
     image_2.show()

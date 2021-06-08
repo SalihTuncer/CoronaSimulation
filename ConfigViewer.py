@@ -51,9 +51,6 @@ class ConfigGUI(QMainWindow):
         default.resize(170, 30)
         default.clicked.connect(self.fill_text)
 
-        self.show()
-        sys.exit(app.exec_())
-
     def fill_text(self):
         for i, (key, value) in enumerate(self.default_config.items()):
             self.labels[i].setText(key)
@@ -68,4 +65,6 @@ class ConfigGUI(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ConfigGUI()
+    config_gui = ConfigGUI()
+    config_gui.show()
+    sys.exit(app.exec_())
