@@ -5,10 +5,9 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QLineEdit, QLabel, QPushB
 import sys
 
 
-class SimulationGUI(QMainWindow):
+class ConfigGUI(QMainWindow):
     def __init__(self):
-        app = QApplication(sys.argv)
-        QMainWindow.__init__(self)
+        super().__init__()
 
         self.setGeometry(600, 300, 640, 480)
         self.setWindowTitle('Corona Simulator')
@@ -68,4 +67,5 @@ class SimulationGUI(QMainWindow):
 
 
 if __name__ == '__main__':
-    SimulationGUI()
+    app = QApplication(sys.argv)
+    ConfigGUI()
