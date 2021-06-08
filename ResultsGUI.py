@@ -37,6 +37,7 @@ class ResultsGUI(QWidget):
         image_label.setGeometry(x, y, width, height)
 
     def add_csv_as_table(self, file_name, x, y, width=630, height=950):
+        # TODO: ignore first column of the .csv-file
         model = QStandardItemModel(self)
         table_view = QTableView(self)
         table_view.setModel(model)
