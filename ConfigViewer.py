@@ -1,24 +1,27 @@
 # external imports which need to be installed
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLineEdit, QLabel, QPushButton
+from PyQt5.QtWidgets import QMainWindow, QLineEdit, QLabel, QPushButton
 
-# internal python libraries
-import sys
+import Main
+from ResultsGUI import ResultsGUI
 
 
 class ConfigGUI(QMainWindow):
     def __init__(self):
         super().__init__()
 
+        self.results = ResultsGUI()
+        self.results.hide()
+
         self.setGeometry(600, 300, 640, 480)
         self.setWindowTitle('Corona Simulator')
 
-        self.default_config = {'Inkubationszeit in Tagen:': 5,
-                               'Dauer der Krankheit in Tagen:': 14,
-                               'Sterblichkeitsrate in Dezimal:': 0.0275,
-                               'Größe des erweiterten Freundeskreises:': 42,
-                               'Simulationsdauer in Tagen:': 200,
-                               'Anzahl Infektionen am Anfange:': 8,
-                               'Bevölkerungszahl exakt:': 80000000
+        self.default_config = {'incubation_period': 5,
+                               'duration_of_infection': 14,
+                               'death_rate': 0.0275,
+                               'extended_circle_of_friends': 42,
+                               'simulation_duration': 200,
+                               'infection_count_start': 8,
+                               'population': 80000000
                                }
 
         self.input_config = {}
@@ -41,7 +44,7 @@ class ConfigGUI(QMainWindow):
 
         self.fill_text()
 
-        start_sim = QPushButton('Simulation start_simen', self)
+        start_sim = QPushButton('start simulation', self)
         start_sim.move(320, y_pos + 40)
         start_sim.resize(200, 30)
         start_sim.clicked.connect(self.on_click)
@@ -57,14 +60,6 @@ class ConfigGUI(QMainWindow):
             self.inputs[i].setText(str(value))
 
     def on_click(self):
-        print('Simulation started.')
         for i in range(len(self.labels)):
-            self.input_config[self.labels[i].text()] = self.inputs[i].text()
-        print(self.input_config)
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    config_gui = ConfigGUI()
-    config_gui.show()
-    sys.exit(app.exec_())
+            self.input_config[self.labels[i].text()] = float(self.inputs[i].text())
+        Main.main(self.input_config, self)

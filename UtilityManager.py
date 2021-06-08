@@ -1,27 +1,20 @@
 # external libraries which need to be installed separately
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
 # internal python libraries
 from shutil import copyfile
-from datetime import datetime
-import os
 
 
 class UtilityManager:
-
     path: str
     new_dir: str
 
-    def __init__(self):
-        # current path
-        self.path = os.getcwd()
-        # use time as unique folder name
-        time_right_now = datetime.now().strftime("%d_%m_%Y_%H_%M_%S")
-        self.new_dir = self.path + '/' + time_right_now + '/'
-        # create directory
-        os.mkdir(self.new_dir)
+    def __init__(self, path: str, new_dir: str):
+        self.path = path
+        self.new_dir = new_dir
 
     def plot_data(self, _infection_history: np.ndarray, _incidence_values: np.ndarray, population: float):
         # gibt einen Plot aus in Abhängigkeit der Anzahl der Infektionen und der Inzidenz-Werte
