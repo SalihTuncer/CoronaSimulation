@@ -21,7 +21,8 @@ class ConfigGUI(QMainWindow):
                                'extended_circle_of_friends': 42,
                                'simulation_duration': 200,
                                'infection_count_start': 8,
-                               'population': 80000000
+                               'population': 80000000,
+                               'window_width': 1000
                                }
 
         self.input_config = {}
@@ -62,4 +63,5 @@ class ConfigGUI(QMainWindow):
     def on_click(self):
         for i in range(len(self.labels)):
             self.input_config[self.labels[i].text()] = float(self.inputs[i].text())
+        self.results.set_window_size(self.input_config['window_width'])
         Main.main(self.input_config, self)
