@@ -19,14 +19,6 @@ def main(config: {str: str}, config_viewer=None):
     infection_history, virus_chain = simulation.simulate()
     # calculate inzidenz values
     incidence_values = simulation.get_incidence_values()
-    # TODO: plot 7-day incidence value and total infections in the last seven days
-    print(f'7-day incidence value: {simulation.get_seven_day_incidence():.2f}')
-    print(f'total infections in the last 7 days: {simulation.get_seven_days_total_infections_count()}')
-    print(f'total infections: {simulation.get_total_infections_count()}')
-    print(f'mortality: {simulation.get_mortality()}')
-    immunity_rate = (
-            simulation.get_total_infections_count() / (config['population'] - simulation.get_mortality()) * 100)
-    print(f'percentage immunity of population: {immunity_rate:.2f}%')
 
     # current path
     path = os.getcwd()
@@ -45,4 +37,5 @@ def main(config: {str: str}, config_viewer=None):
     utils.save_config_file()
 
     if gui:
-        config_viewer.results.add_values(new_dir)
+        config_viewer.results.add_plots_and_table(new_dir)
+        config_viewer.results.add_labels(simulation, config['population'])
