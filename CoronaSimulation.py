@@ -36,3 +36,13 @@ if __name__ == '__main__':
                 config[setting[0].strip()] = float(setting[1])
 
         Main.main(config)
+    '''
+    TODOS
+    
+    - Anzahl Bevoelkerung vernuentig parsen z.b.: 80 Millionen statt 80000000.0
+    - gleitende Mittelwerte ( running means ) -> am Ende auch extrapolieren
+    - Konfiguration in GUI
+    - 7-Tage Inzidenz GUI
+    - vielleicht Legende/Beschreibungen in GUI
+    
+    '''
