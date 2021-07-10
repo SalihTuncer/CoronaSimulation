@@ -5,17 +5,37 @@ import pandas as pd
 # internal python libraries
 from shutil import copyfile
 
+"""
+This class is responsible for plotting data, saving dataFrames and copying config-files.
+"""
+
 
 class UtilityManager:
     path: str
     new_dir: str
 
+    """
+    The arguments are needed later on in the methods. 
+    
+    Args:
+        path: total path of application.
+        new_dir: directory name where files will be saved/copied.
+    """
+
     def __init__(self, path: str, new_dir: str):
         self.path = path
         self.new_dir = new_dir
 
+    """
+    Outputs a plot depending on the number of infections and the incidence values.
+    
+    Args:
+        _infection_history: development of the virus chains
+        _incidence_values: development of the incidence values 
+        population: total population
+    """
+
     def plot_data(self, _infection_history: np.ndarray, _incidence_values: np.ndarray, population: float):
-        # gibt einen Plot aus in Abhängigkeit der Anzahl der Infektionen und der Inzidenz-Werte
         x_infection = np.arange(len(_infection_history))
         x_infection = x_infection // 7
 
@@ -35,13 +55,22 @@ class UtilityManager:
         plt.xlabel('Tage')
         plt.savefig(self.new_dir + 'Entwicklung_Inzidenzwerte.png')
 
-    def analyze_as_data_frame(self, _virus_chain: np.ndarray):
-        # formt alle Infection_Chain-Klassen in DataFrames (Tabellen) um, um sie daraufhin in .csv-Dateien zu speichern
+    """
+    Forms all InfectionChain classes into DataFrames (tables) in order to then save them in .csv files.
+    
+    Args:
+        _virus_chain: includes all virus chains as objects
+    """
 
+    def analyze_as_data_frame(self, _virus_chain: np.ndarray):
+        #
         df = pd.DataFrame([vars(chain) for chain in _virus_chain])
         # print(df.to_string(index=False))
         df.to_csv(self.new_dir + 'virus_chain.csv')
 
+    """
+    Copies the config-file in the new directory so we know what parameters we have used.
+    """
+
     def save_config_file(self):
-        # copy the config in the new directory so we know what parameters we used
         copyfile(self.path + '/corona_simulation.cfg', self.new_dir + 'corona_simulation.cfg')

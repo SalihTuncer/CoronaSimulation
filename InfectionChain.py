@@ -100,5 +100,6 @@ class InfectionChain:
     Returns:
        bool.  state of propagation
     """
+
     def is_propagated(self) -> bool:
         return self.propagated

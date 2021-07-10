@@ -6,8 +6,18 @@ from pprint import pformat
 
 from InfectionChain import InfectionChain
 
+"""
+This is the heart of the whole application. This is where the simulation happens.
+"""
+
 
 class Simulation:
+    """
+    Contact per person will be calculated depending of the extended circle of friends.
+
+    Args:
+        _config: includes all the configurations of the simulation.
+    """
 
     def __init__(self, _config: {str: str}):
 
@@ -24,9 +34,30 @@ class Simulation:
         # representation of simulation will be printed in the terminal so it looks pretty sick
         print(self)
 
-    # is called when user tries to print the object
+    """
+    String representation of the object.
+    
+    If we override the __repr__-method, we can decide what will be printed.
+    
+    Returns:
+       str.  the configuration
+    """
+
     def __repr__(self) -> str:
         return '\nConfiguration of the simulation:\n' + pformat(vars(self), indent=2, width=1) + '\n'
+
+    """
+    Simulates every day until the time is over.
+    
+    Every day needs to be simulated seperately for every infection chain. So we iterate over every day and every
+    chain and let a day pass with virus.day_ends(). When we create a new infection chain, we put that one into our 
+    numpy array which is used like a database. At the end we return the infection history and all viruses as numpy
+    arrays which can then be further processed.
+    
+    Returns:
+        np.ndarray:  infection history.
+        np.ndarray:  all virus chains.         
+    """
 
     def simulate(self) -> (np.ndarray, np.ndarray):
 
@@ -50,31 +81,73 @@ class Simulation:
 
         return self.spread_infection_history(), np.array(self._viruses)
 
-    # gibt Anzahl aller bisherigen Infektionen aufsummiert zurück
+    """
+    Indicates how many people are infected in total.
+    
+    Returns:
+       int.  amount infections in total.
+    """
+
     def get_total_active_infections_count(self) -> int:
         return sum([virus.infection_count for virus in self._viruses if virus.lifetime > 0])
 
-    # gibt Anzahl aktiver Infektionen zurück
+    """
+    Indicates how many people are infected right now.
+    
+    Returns:
+       int.  amount active infections.
+    """
+
     def get_total_infections_count(self) -> int:
         return sum([virus.infection_count for virus in self._viruses])
 
-    # kalkuliert Inzidenz-Wert in Abhängigkeit der Bevölkerung und der aktiven Infektionszahlen
+    """
+    Indicates the the incidence-value depending on population and active infections.
+    
+    Returns:
+       np.ndarray.  incidence values
+    """
+
     def get_incidence_values(self) -> np.ndarray:
         return np.array([(virus.infection_count * 100000) / self._config['population'] for virus in self._viruses])
 
-    # gibt Anzahl verstorbener Menschen zurück
+    """
+    Indicates how many people have passed away through the virus.
+    
+    Returns:
+       int.  mortality.
+    """
+
     def get_mortality(self) -> int:
         return int(sum([virus.infection_count for virus in self._viruses]) * self._config['death_rate'])
 
-    # gibt die 7-Tages-Inzidenz zurück
+    """
+    Indicates the 7-day incidence-value. 
+    
+    Returns:
+        int.  incidence value.
+    """
+
     def get_seven_day_incidence(self) -> int:
         return (self._viruses[-1].infection_count * 100000) / self._config['population']
 
-    # gibt Infektionszahlen der letzten sieben Tage zurück
+    """
+    Indicates the amount of infections in the last seven days.
+    
+    Returns:
+        int.  amount of total infections.
+    """
+
     def get_seven_days_total_infections_count(self) -> int:
         return self._viruses[-1].infection_count
 
-    # verteilt die Infektionszahlen realistisch über die Tage, um keine lineare Entwicklung darzustellen
+    """
+    Distributes the infection numbers realistically over the days so as not to show a linear development.
+    
+    Returns:
+        np.ndarray.  distribution.     
+    """
+
     def spread_infection_history(self) -> np.ndarray:
 
         spread = np.zeros(len(self._infection_history) * 7)
