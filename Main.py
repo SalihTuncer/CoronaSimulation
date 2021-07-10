@@ -1,14 +1,12 @@
 # package imports
-from Simulation import Simulation
-from UtilityManager import UtilityManager
-
+import os
 # external python libraries
 from PyQt5.QtWidgets import QMainWindow
-
 # internal python libraries
 from datetime import datetime
-import os
 
+from Simulation import Simulation
+from UtilityManager import UtilityManager
 
 def main(config: {str: str}, config_viewer: QMainWindow = None):
     gui = False

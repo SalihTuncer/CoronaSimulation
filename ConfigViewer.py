@@ -1,9 +1,9 @@
 # package imports
 import Main
-from ResultsGUI import ResultsGUI
-
 # external imports which need to be installed
 from PyQt5.QtWidgets import QMainWindow, QLineEdit, QLabel, QPushButton
+
+from ResultsGUI import ResultsGUI
 
 
 class ConfigGUI(QMainWindow):

@@ -1,8 +1,7 @@
 # external libraries which need to be installed separately
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-
 # internal python libraries
 from shutil import copyfile
 

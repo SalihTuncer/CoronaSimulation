@@ -1,11 +1,10 @@
 # package imports
-from InfectionChain import InfectionChain
-
 # external libraries which need to be installed separately
 import numpy as np
-
 # internal python libraries
 from pprint import pformat
+
+from InfectionChain import InfectionChain
 
 
 class Simulation:

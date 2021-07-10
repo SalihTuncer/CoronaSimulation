@@ -1,18 +1,18 @@
 # package imports
-from Simulation import Simulation
-
+# internal python libraries
+import csv
 # external imports which need to be installed
 from PyQt5.QtWidgets import QWidget, QLabel, QTableView
 from PyQt5.QtGui import QImage, QPixmap, QStandardItemModel, QStandardItem
 
-# internal python libraries
-import csv
+from Simulation import Simulation
 
 
 class ResultsGUI(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Simulation results")
+
 
     def set_window_size(self, x: float):
         self.x = x

@@ -1,13 +1,12 @@
 # package imports
 import Main
-from ConfigViewer import ConfigGUI
-
+import argparse
+# internal python libraries
+import sys
 # imports which need to be installed externally
 from PyQt5.QtWidgets import QApplication
 
-# internal python libraries
-import sys
-import argparse
+from ConfigViewer import ConfigGUI
 
 if __name__ == '__main__':
 
