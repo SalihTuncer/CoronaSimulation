@@ -8,7 +8,7 @@ from datetime import datetime
 from Simulation import Simulation
 from UtilityManager import UtilityManager
 
-'''
+"""
 This is where the application is started.
 
 The Simulation will be started with the configurations, a directory will be created in the current path where the
@@ -16,10 +16,10 @@ application is started and the results will be added to the directory. If the ap
 show the results in a specific GUI. Otherwise the results will be just added to the directory. This depends on the mode.
 
 Args:
-    config: inherits all the configurations of the simulation.
+    config: includes all the configurations of the simulation.
     config_viewer: GUI for the configuration.
     --mode: gui starts a GUI | cmd starts a command line tool
-'''
+"""
 
 
 def main(config: {str: str}, config_viewer: QMainWindow = None):

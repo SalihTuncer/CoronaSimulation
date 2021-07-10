@@ -5,8 +5,25 @@ from PyQt5.QtWidgets import QMainWindow, QLineEdit, QLabel, QPushButton
 
 from ResultsGUI import ResultsGUI
 
+"""
+GUI with options which can be adjusted. 
+
+This class is the main window of the GUI application. Here you can change the configurations
+of the simulation which otherwise would have had to be changed by the config-file. This saves
+time and is user-friendly.
+
+Args: 
+    QMainWindow: inherits all the functions from the library-object.
+"""
+
 
 class ConfigGUI(QMainWindow):
+    """
+    Initializes the GUI with default values, labels and buttons.
+
+    The configuration decides what the default values of the GUI will be.
+    """
+
     def __init__(self):
         super().__init__()
 
@@ -56,10 +73,18 @@ class ConfigGUI(QMainWindow):
         default.resize(170, 30)
         default.clicked.connect(self.fill_text)
 
+    '''
+    Fills the empty labels and inputs with the values of the configuration.
+    '''
+
     def fill_text(self):
         for i, (key, value) in enumerate(self.default_config.items()):
             self.labels[i].setText(key)
             self.inputs[i].setText(str(value))
+
+    '''
+    Starts the simulation with the values in the input-fields.
+    '''
 
     def on_click(self):
         for i in range(len(self.labels)):
