@@ -1,3 +1,6 @@
+# package imports
+from Simulation import Simulation
+
 # external imports which need to be installed
 from PyQt5.QtWidgets import QWidget, QLabel, QTableView
 from PyQt5.QtGui import QImage, QPixmap, QStandardItemModel, QStandardItem
@@ -11,13 +14,13 @@ class ResultsGUI(QWidget):
         super().__init__()
         self.setWindowTitle("Simulation results")
 
-    def set_window_size(self, x):
+    def set_window_size(self, x: float):
         self.x = x
         self.y = round(self.x * (3 / 4))
         self.move(round(self.x * (5 / 16)), round(self.y * (1 / 12)))
         self.resize(self.x, self.y)
 
-    def add_plots_and_table(self, dir_name):
+    def add_plots_and_table(self, dir_name: str):
         self.dir_name = dir_name
 
         self.add_image('Entwicklung_Infektionszahlen.png', round(self.x * (1 / 64)), round(self.y * (1 / 24)))
@@ -25,7 +28,7 @@ class ResultsGUI(QWidget):
 
         self.add_csv_as_table('virus_chain.csv', round(self.x * (9 / 16)), round(self.y * (1 / 10)))
 
-    def add_labels(self, simulation, population):
+    def add_labels(self, simulation: Simulation, population: float):
         # header for the table
         table_label = QLabel(self)
         table_label.move(round(self.x * (47 / 64)), round(self.y * (1 / 16)))
@@ -68,7 +71,7 @@ class ResultsGUI(QWidget):
 
         self.show()
 
-    def add_image(self, file_name, x, y):
+    def add_image(self, file_name: str, x: float, y: float):
         width = round(self.x * (1 / 2))
         height = round(self.y * (5 / 12))
         image_label = QLabel(self)
@@ -77,7 +80,7 @@ class ResultsGUI(QWidget):
         image_label.setPixmap(QPixmap.fromImage(image))
         image_label.setGeometry(x, y, width, height)
 
-    def add_csv_as_table(self, file_name, x, y):
+    def add_csv_as_table(self, file_name: str, x: float, y: float):
         # TODO: ignore first column of the .csv-file
         width = round(self.x * (63 / 160))
         height = round(self.y * (5 / 12))

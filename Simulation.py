@@ -1,16 +1,16 @@
+# package imports
+from InfectionChain import InfectionChain
+
 # external libraries which need to be installed separately
 import numpy as np
 
 # internal python libraries
 from pprint import pformat
 
-# package imports
-from InfectionChain import InfectionChain
-
 
 class Simulation:
 
-    def __init__(self, _config):
+    def __init__(self, _config: {str: str}):
 
         self._config = _config
 
@@ -26,10 +26,10 @@ class Simulation:
         print(self)
 
     # is called when user tries to print the object
-    def __repr__(self):
+    def __repr__(self) -> str:
         return '\nConfiguration of the simulation:\n' + pformat(vars(self), indent=2, width=1) + '\n'
 
-    def simulate(self):
+    def simulate(self) -> (np.ndarray, np.ndarray):
 
         # we add the time of the duration of the infection so we let the virus die at the rest of the time
         for day in range(0, int(self._config['simulation_duration'])):
@@ -82,7 +82,5 @@ class Simulation:
 
         for i, infection_count in enumerate(self._infection_history):
             spread[i * 7:(i + 1) * 7] = infection_count / 7
-        print(f'curse of the new infections in the last 7-days: {spread[-7:]}')
 
-        # TODO: at adjusting do not forget to let the infection curve to be realistic and not just linear
         return spread
