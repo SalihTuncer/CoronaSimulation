@@ -7,18 +7,51 @@ from PyQt5.QtGui import QImage, QPixmap, QStandardItemModel, QStandardItem
 
 from Simulation import Simulation
 
+"""
+GUI which shows all the results of the simulation.
+
+This class is technically a widget so it is a part of the QMainWindow. It includes two plots with the amount of
+infections and the incidence values. Furthermore it is shown a table with the history of all virus chains. This can 
+be helpful for deeper analyzes. Under the table are additional information like the actual incidence value, infections
+in the last seven days, all infections, mortality and the percent immunity of the population.  
+"""
+
 
 class ResultsGUI(QWidget):
+    """
+    Only sets the title of the results window.
+    """
+
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Simulation results")
 
+    """
+    Sets the window size depending on the width given from the config.  
+    
+    One of the special features of the GUI is the fitting of the window size. Every part of the GUI is given 
+    in percentages depending on the x-coordinate or the y-coordinate. This leads to a dynamic resolution which 
+    can be chosen from the user in the configurations.
+    
+    Args:
+        x: window width.
+    """
 
     def set_window_size(self, x: float):
         self.x = x
         self.y = round(self.x * (3 / 4))
         self.move(round(self.x * (5 / 16)), round(self.y * (1 / 12)))
         self.resize(self.x, self.y)
+
+    """
+    Plots and Tables are added to the GUI.
+    
+    On the left top the evolution of the cases will be shown. Below of it are the incidence values. On the right top 
+    is the table with the history of the virus chains and below of it are the additional information.
+    
+    Args:
+        dir_name: directory name which include the plots as .png-files.
+    """
 
     def add_plots_and_table(self, dir_name: str):
         self.dir_name = dir_name
@@ -27,6 +60,15 @@ class ResultsGUI(QWidget):
         self.add_image('Entwicklung_Inzidenzwerte.png', round(self.x * (1 / 64)), round(self.y * (8 / 15)))
 
         self.add_csv_as_table('virus_chain.csv', round(self.x * (9 / 16)), round(self.y * (1 / 10)))
+
+    """
+    Here the different text labels are added to the GUI. The variable names tell us already what information they
+    include.
+    
+    Args:
+        simulation: simulation class which include the information we need to show.
+        population: amount of total population.
+    """
 
     def add_labels(self, simulation: Simulation, population: float):
         # header for the table
@@ -71,6 +113,15 @@ class ResultsGUI(QWidget):
 
         self.show()
 
+    """
+        Adds an image depending on the name to the GUI at specific coordinates.
+        
+        Args:
+            file_name: name of the plot.
+            x: x-coordinate
+            y: y-coordinate 
+    """
+
     def add_image(self, file_name: str, x: float, y: float):
         width = round(self.x * (1 / 2))
         height = round(self.y * (5 / 12))
@@ -79,6 +130,15 @@ class ResultsGUI(QWidget):
         image = QImage(self.dir_name + file_name)
         image_label.setPixmap(QPixmap.fromImage(image))
         image_label.setGeometry(x, y, width, height)
+
+    """
+        Adds a table depending on the name to the GUI at a specific coordinates.
+        
+        Args:
+            file_name: name of the plot.
+            x: x-coordinate
+            y: y-coordinate 
+    """
 
     def add_csv_as_table(self, file_name: str, x: float, y: float):
         # TODO: ignore first column of the .csv-file
