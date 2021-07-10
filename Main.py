@@ -9,7 +9,7 @@ from Simulation import Simulation
 from UtilityManager import UtilityManager
 
 """
-This is where the application is started.
+This class is called from the CoronaSimulation-class and takes the arguments.
 
 The Simulation will be started with the configurations, a directory will be created in the current path where the
 application is started and the results will be added to the directory. If the application is in the GUI mode, it will
@@ -18,7 +18,6 @@ show the results in a specific GUI. Otherwise the results will be just added to 
 Args:
     config: includes all the configurations of the simulation.
     config_viewer: GUI for the configuration.
-    --mode: gui starts a GUI | cmd starts a command line tool
 """
 
 

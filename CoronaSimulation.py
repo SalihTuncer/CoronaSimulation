@@ -8,6 +8,17 @@ from PyQt5.QtWidgets import QApplication
 
 from ConfigViewer import ConfigGUI
 
+"""
+This is where the application is started.
+
+The Main-class will be called from this class with the configuration-file when the cmd-mode
+is activated. Otherwise it is started with the GUI and needs the input of the GUI first. If
+the input is taken, the Main-class can be called and the config-viewer will be passed as an 
+argument.
+
+Args:
+    --mode: gui starts a GUI | cmd starts a command line tool
+"""
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
