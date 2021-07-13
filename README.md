@@ -18,8 +18,7 @@ Corona Simulation tool which acts as a help for decision making in a pandemic.
    ./cmd
    ```
 
-Project Organization
-------------
+### Project Organization
 
     ├── ConfigViewer.py
     ├── CoronaSimulation.py
@@ -35,10 +34,7 @@ Project Organization
     ├── gui.sh
     └── requirements.txt
 
-------------
-
-SLOC
------------- 
+### SLOC
 
     158 ./Simulation.py
     161 ./ResultsGUI.py
@@ -48,7 +44,5 @@ SLOC
     76 ./UtilityManager.py
     54 ./Main.py
     693 total
-
------------- 
 
 state: 07/13/2021
