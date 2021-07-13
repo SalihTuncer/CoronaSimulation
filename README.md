@@ -1,13 +1,22 @@
 # CoronaSimulation
 Corona Simulation tool which acts as a help for decision making in a pandemic.
 
-How to pull the project:
+### Installation
 
-`git clone https://github.com/SalihTuncer/CoronaSimulation.git`
-
-Installing the required packages with pip:
-
-`pip install -r requirements.txt`
+1. Clone the repo
+   ```sh
+   git clone https://github.com/SalihTuncer/CoronaSimulation.git
+   ```
+2. Install pip packages
+   ```sh
+   pip install -r requirements.txt
+   ```
+3. Run the application via
+   ```sh
+   ./gui 
+   or
+   ./cmd
+   ```
 
 Project Organization
 ------------
