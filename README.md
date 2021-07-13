@@ -5,6 +5,10 @@ How to pull the project:
 
 `git clone https://github.com/SalihTuncer/CoronaSimulation.git`
 
+Installing the required packages with pip:
+
+`pip install -r requirements.txt`
+
 Project Organization
 ------------
 
