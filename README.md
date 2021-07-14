@@ -14,8 +14,11 @@ Corona Simulation tool which acts as a help for decision making in a pandemic.
 3. Run the application via
    ```sh
    ./gui 
+   ```
    or
+   ```sh
    ./cmd
+   
    ```
 
 ### Project Organization
